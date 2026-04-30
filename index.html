@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoterReady Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">🇮🇳 VoterReady Simulator</div>
+        <nav>
+            <button class="nav-btn active" data-target="home">Home</button>
+            <button class="nav-btn" data-target="scenario">🚨 Test Me</button>
+            <button class="nav-btn" data-target="evm">🗳️ EVM Simulator</button>
+            <button class="nav-btn" data-target="myths">🧠 Myths</button>
+            <button class="nav-btn" data-target="assistant">💬 Chat</button>
+            <button class="nav-btn" data-target="readiness" id="nav-readiness">📊 Score</button>
+        </nav>
+    </header>
+
+    <main id="app-content">
+        <!-- Home Section -->
+        <section id="home" class="view active">
+            <div class="hero">
+                <h1>Ready for Polling Day? Prove It.</h1>
+                <p>Welcome to the ultimate Voter Readiness Simulator. Face real election day scenarios, practice on an EVM, and get your readiness score!</p>
+                <button class="cta-btn" onclick="document.querySelector('[data-target=scenario]').click()">Start Simulation</button>
+            </div>
+            <div class="features-grid">
+                <div class="card" onclick="document.querySelector('[data-target=scenario]').click()">
+                    <h3>🚨 Test Me Like Election Day</h3>
+                    <p>Face real situations at the booth and decide what to do.</p>
+                </div>
+                <div class="card" onclick="document.querySelector('[data-target=evm]').click()">
+                    <h3>🗳️ EVM Voting Simulator</h3>
+                    <p>Practice voting on a virtual EVM and watch the VVPAT slip.</p>
+                </div>
+                <div class="card" onclick="document.querySelector('[data-target=myths]').click()">
+                    <h3>🧠 Myth vs Fact</h3>
+                    <p>Bust common election myths with interactive flashcards.</p>
+                </div>
+                <div class="card" onclick="document.querySelector('[data-target=assistant]').click()">
+                    <h3>💬 Chat Assistant</h3>
+                    <p>Got a problem? Ask the assistant for help.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scenario Section -->
+        <section id="scenario" class="view">
+            <h2>🚨 Test Me Like Election Day</h2>
+            <p class="subtitle">What would you do in this situation? (Dhyan se chuniye!)</p>
+            <div id="scenario-container" class="quiz-card">
+                <h3 id="scenario-text">Scenario will appear here</h3>
+                <div id="scenario-options" class="options"></div>
+                <div id="scenario-feedback" class="feedback-box hidden">
+                    <div id="feedback-verdict" class="verdict"></div>
+                    <div class="feedback-section">
+                        <h4>Kyun? (Why?)</h4>
+                        <p id="feedback-why"></p>
+                    </div>
+                    <div class="feedback-section">
+                        <h4>Sahi Kadam (Correct Step)</h4>
+                        <p id="feedback-step"></p>
+                    </div>
+                </div>
+                <button id="next-scenario-btn" class="cta-btn hidden">Next Scenario</button>
+                <div id="scenario-completion" class="hidden">
+                    <p>Simulation complete! Let's see how prepared you are.</p>
+                    <button class="cta-btn" onclick="document.querySelector('[data-target=readiness]').click()">Check Readiness Score</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- EVM Simulator Section -->
+        <section id="evm" class="view">
+            <h2>🗳️ EVM Voting Simulator</h2>
+            <p class="subtitle">Experience how a real EVM and VVPAT work. Cast a test vote below!</p>
+            
+            <div class="simulator-layout">
+                <div class="ballot-unit">
+                    <div class="bu-header">BALLOT UNIT</div>
+                    <div class="candidate-list" id="candidate-list">
+                        <!-- Candidates injected via JS -->
+                    </div>
+                </div>
+                
+                <div class="vvpat-unit">
+                    <div class="vvpat-header">VVPAT</div>
+                    <div class="vvpat-window">
+                        <div class="vvpat-slip hidden" id="vvpat-slip">
+                            <div class="slip-serial" id="slip-serial">1</div>
+                            <div class="slip-name" id="slip-name">Candidate</div>
+                            <div class="slip-symbol" id="slip-symbol">🍎</div>
+                        </div>
+                    </div>
+                    <div class="vvpat-status" id="vvpat-status">Machine Ready</div>
+                </div>
+            </div>
+
+            <div id="evm-feedback" class="feedback-box hidden" style="margin-top: 2rem;">
+                <div class="verdict correct">Vote Cast Successfully!</div>
+                <p>The VVPAT slip was visible for 7 seconds and has now dropped into the sealed drop box. Your vote is secure.</p>
+                <br>
+                <h4>What if you pressed the wrong button?</h4>
+                <p>The EVM records the vote for the button you pressed. You cannot change it once pressed. Always check the symbol before pressing!</p>
+                <button class="cta-btn" style="margin-top: 1rem;" onclick="resetEVM()">Vote Again</button>
+            </div>
+        </section>
+
+        <!-- Myths Section -->
+        <section id="myths" class="view">
+            <h2>🧠 Myth vs Fact Flashcards</h2>
+            <p class="subtitle">Tap on a card to flip it and reveal the truth!</p>
+            
+            <div class="flashcards-grid" id="flashcards-container">
+                <!-- Flashcards injected via JS -->
+            </div>
+        </section>
+
+        <!-- Chat Assistant Section -->
+        <section id="assistant" class="view">
+            <h2>💬 Smart Chat Assistant</h2>
+            <p class="subtitle">Ask any question or use a quick prompt below.</p>
+            
+            <div class="chat-container">
+                <div id="chat-history" class="chat-history">
+                    <div class="message bot">Namaste! How can I help you prepare for polling day?</div>
+                </div>
+                
+                <div class="chat-input-area">
+                    <div class="quick-prompts">
+                        <button class="chat-chip" onclick="sendChatMessage('🚨 Test Me Like Election Day')">🚨 Test Me Like Election Day</button>
+                        <button class="chat-chip" onclick="sendChatMessage('🧠 What Happens After I Press Vote?')">🧠 What Happens After I Press Vote?</button>
+                        <button class="chat-chip" onclick="sendChatMessage('📄 I Have a Problem – What Should I Do?')">📄 I Have a Problem – What Should I Do?</button>
+                        <button class="chat-chip" onclick="sendChatMessage('📊 Am I Ready to Vote?')">📊 Am I Ready to Vote?</button>
+                    </div>
+                    <div class="custom-input-wrapper">
+                        <input type="text" id="custom-chat-input" placeholder="Type your own question here..." onkeypress="handleKeyPress(event)">
+                        <button class="send-btn" onclick="submitCustomChat()">Send</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Readiness Score Section -->
+        <section id="readiness" class="view">
+            <h2>📊 Your Readiness Score</h2>
+            <div class="readiness-card">
+                <div class="score-circle">
+                    <span id="final-score">0</span><span class="out-of">/100</span>
+                </div>
+                <div id="readiness-details" class="readiness-details hidden">
+                    <div class="detail-box weak-area">
+                        <h3>⚠️ Weak Area</h3>
+                        <p id="weak-area-text">Play some scenarios to identify your weak areas.</p>
+                    </div>
+                    <div class="detail-box tip-area">
+                        <h3>💡 Improvement Tip</h3>
+                        <p id="tip-text">Start the simulation to get personalized tips.</p>
+                    </div>
+                </div>
+                <div id="readiness-empty">
+                    <p>You haven't completed enough scenarios yet! Test yourself first.</p>
+                    <button class="cta-btn" onclick="document.querySelector('[data-target=scenario]').click()">Go to Simulation</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>VoterReady Simulator - Strictly for educational purposes. Always refer to official ECI guidelines.</p>
+    </footer>
+
+    <!-- Audio for EVM Beep -->
+    <audio id="beep-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-software-interface-start-2574.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
