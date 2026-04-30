@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoterReady Simulator - Unit Tests</title>
+    <style>
+        body { font-family: 'Inter', sans-serif; padding: 20px; background-color: #0f172a; color: #f8fafc; }
+        .pass { color: #10b981; font-weight: 600; padding: 8px; background: rgba(16, 185, 129, 0.1); border-left: 4px solid #10b981; margin: 10px 0; border-radius: 4px; }
+        .fail { color: #ef4444; font-weight: 600; padding: 8px; background: rgba(239, 68, 68, 0.1); border-left: 4px solid #ef4444; margin: 10px 0; border-radius: 4px; }
+        #test-sandbox { display: none; }
+        .summary { font-size: 1.2rem; margin-top: 20px; font-weight: 800; border-top: 1px solid #334155; padding-top: 20px;}
+    </style>
+</head>
+<body>
+    <h1>🧪 VoterReady Simulator - Core Logic Tests</h1>
+    <p>Validating successful voter flows and edge cases...</p>
+    <div id="test-results"></div>
+    
+    <!-- Sandbox container mimicking the real DOM for testing UI-coupled modules -->
+    <div id="test-sandbox">
+        <!-- EVM Simulator Elements -->
+        <div id="candidate-list"></div>
+        <div id="vvpat-status"></div>
+        <div id="vvpat-slip"></div>
+        <div id="slip-serial"></div>
+        <div id="slip-name"></div>
+        <div id="slip-symbol"></div>
+        <div id="evm-feedback"></div>
+        <audio id="beep-sound"></audio>
+        
+        <!-- Scenario Elements -->
+        <h3 id="scenario-text"></h3>
+        <div id="scenario-options"></div>
+        <div id="scenario-feedback"></div>
+        <div id="feedback-verdict"></div>
+        <div id="feedback-why"></div>
+        <div id="feedback-step"></div>
+        <div id="next-scenario-btn"></div>
+        <div id="scenario-completion"></div>
+        
+        <!-- Chat Elements -->
+        <div id="chat-history"></div>
+        <input type="text" id="custom-chat-input">
+        <button class="send-btn"></button>
+    </div>
+
+    <!-- ES Module Test Runner -->
+    <script type="module" src="test.js"></script>
+</body>
+</html>
