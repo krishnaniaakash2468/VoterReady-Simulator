@@ -16,6 +16,7 @@
             <button class="nav-btn" data-target="evm" aria-selected="false" role="tab">🗳️ EVM Simulator</button>
             <button class="nav-btn" data-target="myths" aria-selected="false" role="tab">🧠 Myths</button>
             <button class="nav-btn" data-target="assistant" aria-selected="false" role="tab">💬 Chat</button>
+            <button class="nav-btn" data-target="locator" aria-selected="false" role="tab">📍 Booth Locator</button>
             <button class="nav-btn" data-target="readiness" id="nav-readiness" aria-selected="false" role="tab">📊 Score</button>
         </nav>
     </header>
@@ -142,6 +143,30 @@
                         <input type="text" id="custom-chat-input" placeholder="Type your own question here..." onkeypress="handleKeyPress(event)" aria-label="Type your question for the assistant">
                         <button class="send-btn" onclick="submitCustomChat()" aria-label="Send message">Send</button>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Booth Locator Section -->
+        <section id="locator" class="view">
+            <h2>📍 Polling Station Locator</h2>
+            <p class="subtitle">Find your nearest polling station in Ahmedabad (Simulated for AIDTM area).</p>
+            
+            <div class="map-container" style="background: var(--bg-card); padding: 1rem; border-radius: 16px; border: 1px solid var(--border);">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3670.364239846059!2d72.564167!3d23.175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e832f00000001%3A0x6b45053229712f9e!2sAdani%20Institute%20of%20Digital%20Technology%20Management%20(AIDTM)!5e0!3m2!1sen!2sin!4v1714460000000!5m2!1sen!2sin" 
+                    width="100%" 
+                    height="450" 
+                    style="border:0; border-radius: 12px;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade" 
+                    title="Polling Station Locator" 
+                    aria-label="Google Maps Polling Station">
+                </iframe>
+                <div style="margin-top: 1rem; display: flex; gap: 1rem; align-items: center;">
+                    <div style="background: var(--accent); width: 12px; height: 12px; border-radius: 50%;"></div>
+                    <p>Current Simulation: <strong>Adani Institute of Digital Technology Management (AIDTM)</strong></p>
                 </div>
             </div>
         </section>
