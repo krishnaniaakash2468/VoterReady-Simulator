@@ -10,13 +10,13 @@
 <body>
     <header class="navbar">
         <div class="logo">🇮🇳 VoterReady Simulator</div>
-        <nav>
-            <button class="nav-btn active" data-target="home">Home</button>
-            <button class="nav-btn" data-target="scenario">🚨 Test Me</button>
-            <button class="nav-btn" data-target="evm">🗳️ EVM Simulator</button>
-            <button class="nav-btn" data-target="myths">🧠 Myths</button>
-            <button class="nav-btn" data-target="assistant">💬 Chat</button>
-            <button class="nav-btn" data-target="readiness" id="nav-readiness">📊 Score</button>
+        <nav aria-label="Main Navigation">
+            <button class="nav-btn active" data-target="home" aria-selected="true" role="tab">Home</button>
+            <button class="nav-btn" data-target="scenario" aria-selected="false" role="tab">🚨 Test Me</button>
+            <button class="nav-btn" data-target="evm" aria-selected="false" role="tab">🗳️ EVM Simulator</button>
+            <button class="nav-btn" data-target="myths" aria-selected="false" role="tab">🧠 Myths</button>
+            <button class="nav-btn" data-target="assistant" aria-selected="false" role="tab">💬 Chat</button>
+            <button class="nav-btn" data-target="readiness" id="nav-readiness" aria-selected="false" role="tab">📊 Score</button>
         </nav>
     </header>
 
@@ -55,8 +55,8 @@
             <div id="scenario-container" class="quiz-card">
                 <h3 id="scenario-text">Scenario will appear here</h3>
                 <div id="scenario-options" class="options"></div>
-                <div id="scenario-feedback" class="feedback-box hidden">
-                    <div id="feedback-verdict" class="verdict"></div>
+                <div id="scenario-feedback" class="feedback-box hidden" aria-live="polite">
+                    <div id="feedback-verdict" class="verdict" aria-live="assertive"></div>
                     <div class="feedback-section">
                         <h4>Kyun? (Why?)</h4>
                         <p id="feedback-why"></p>
@@ -138,8 +138,9 @@
                         <button class="chat-chip" onclick="sendChatMessage('📊 Am I Ready to Vote?')">📊 Am I Ready to Vote?</button>
                     </div>
                     <div class="custom-input-wrapper">
-                        <input type="text" id="custom-chat-input" placeholder="Type your own question here..." onkeypress="handleKeyPress(event)">
-                        <button class="send-btn" onclick="submitCustomChat()">Send</button>
+                        <label for="custom-chat-input" class="sr-only" style="display:none;">Chat message</label>
+                        <input type="text" id="custom-chat-input" placeholder="Type your own question here..." onkeypress="handleKeyPress(event)" aria-label="Type your question for the assistant">
+                        <button class="send-btn" onclick="submitCustomChat()" aria-label="Send message">Send</button>
                     </div>
                 </div>
             </div>
@@ -177,6 +178,6 @@
     <!-- Audio for EVM Beep -->
     <audio id="beep-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-software-interface-start-2574.mp3" preload="auto"></audio>
 
-    <script src="script.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>
