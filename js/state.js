@@ -6,7 +6,8 @@ export const state = {
         'Booth Scenarios': { earned: 0, max: 0 },
         'EVM Knowledge': { earned: 0, max: 0 }
     },
-    scenariosCompleted: 0
+    scenariosCompleted: 0,
+    voterState: 'IDLE' // States: IDLE, ID_VERIFIED, VOTE_CAST
 };
 
 export function updateScore(category, pointsEarned, maxPoints) {

@@ -80,6 +80,14 @@ function runTests() {
         assert(false, "[Security] Chat message was not appended");
     }
 
+    // --- 5. Test Google Maps Component (Accessibility & Presence) ---
+    const mapIframe = document.querySelector('iframe[title="Polling Station Locator"]');
+    assert(!!mapIframe, "[Google Ecosystem] Google Maps Embed component is present in the DOM");
+    if(mapIframe) {
+        const hasAria = mapIframe.getAttribute('aria-label') === 'Google Maps Polling Station';
+        assert(hasAria, "[Accessibility] Google Maps iframe has correct ARIA label for screen readers");
+    }
+
     // Summary
     const summary = document.createElement('div');
     summary.className = 'summary';

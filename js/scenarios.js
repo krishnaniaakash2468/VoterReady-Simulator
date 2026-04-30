@@ -97,6 +97,7 @@ function handleScenarioChoice(opt, btn, s) {
     }
 
     state.scenariosCompleted++;
+    state.voterState = 'ID_VERIFIED';
     feedbackVerdict.innerText = opt.verdict;
     feedbackWhy.innerText = opt.why;
     feedbackStep.innerText = opt.step;

@@ -1,4 +1,4 @@
-import { updateScore } from './state.js';
+import { state, updateScore } from './state.js';
 
 const fictionalCandidates = [
     { serial: 1, name: "Arjun Verma", symbol: "🍎" },
@@ -78,6 +78,7 @@ function castVote(index) {
             
             // Add EVM Knowledge Points just for trying!
             updateScore('EVM Knowledge', 10, 10);
+            state.voterState = 'VOTE_CAST';
         }, 500);
     }, 7000);
 }
